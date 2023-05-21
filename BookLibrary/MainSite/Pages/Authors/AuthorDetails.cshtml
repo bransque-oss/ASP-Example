@@ -1,0 +1,6 @@
+﻿@page "/authors/{id:int}"
+@model MainSite.Pages.AuthorDetailsModel
+
+<h3>@Model.Author.Name</h3>
+<div>@Model.Author.Description</div>
+@await Html.PartialAsync("/Pages/Books/_BookList.cshtml", Model.Author.Books)

@@ -1,0 +1,5 @@
+﻿@page "{id:int}"
+@model MainSite.Pages.Books.EditModel
+
+<h3>Редактировать книгу</h3>
+@await Html.PartialAsync("_BookCreateEditForm", Model.Input)

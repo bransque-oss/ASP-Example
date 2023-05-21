@@ -1,0 +1,25 @@
+﻿@page
+@model MainSite.Pages.Registration.IndexModel
+@{
+    ViewBag.IsAuthPages = true;
+}
+<body class="px-2">
+    <form method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="@Model.UserInput.Login">Логин:</label>
+            <input class="form-control" asp-for="@Model.UserInput.Login" />
+            <span asp-validation-for="@Model.UserInput.Login" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.UserInput.Password">Пароль:</label>
+            <input class="form-control" asp-for="@Model.UserInput.Password" />
+            <span asp-validation-for="@Model.UserInput.Password" class="text-danger"></span>
+        </div>
+        <div class="mt-1">
+            <button class="btn btn-secondary" asp-page-handler="Cancel" formnovalidate>Отмена</button>
+            <button class="btn btn-primary" type="submit">Регистрация</button>
+        </div>
+    </form>
+</body>
+

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+</head>
+<body>
+    @if ((ViewBag.IsAuthPages is null || !ViewBag.IsAuthPages))
+    {
+        <nav class="navbar navbar-expand-sm bg-dark">
+            <div class="container-fluid">
+                <div class="nav">
+                    <a class="nav-link px-2 text-white" asp-page="/Authors/Index">Авторы</a>
+                    <a class="nav-link px-2 text-white" asp-page="/Books/Index">Книги</a>
+                </div>
+                <div class="nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a class="nav-link px-2 text-white" asp-page="/Login/SignOut">Выйти</a>
+                    }
+                    else
+                    {
+                        <a class="nav-link px-2 text-white" asp-page="/Registration/Index">Регистрация</a>
+                        <a class="nav-link px-2 text-white" asp-page="/Login/Index">Вход</a>
+                    }
+                </div>
+            </div>
+        </nav>
+    }
+    <div class="px-2">
+        @RenderBody()
+    </div>
+</body>
+</html>

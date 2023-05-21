@@ -1,0 +1,7 @@
+﻿@page "/books/{id:int}"
+@model MainSite.Pages.BookDetailsModel
+
+<h2>@Model.Book.Title</h2>
+<h4>@Model.Book.AuthorName</h4>
+<h6>ISBN: @Model.Book.Isbn</h6>
+<div>@Model.Book.Description</div>

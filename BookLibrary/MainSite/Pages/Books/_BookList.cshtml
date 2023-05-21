@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Authorization
+@using Services;
+@inject Microsoft.AspNetCore.Authorization.IAuthorizationService AuthorizationService
+
+@model IEnumerable<ViewModels.BookVm>
+
+<table class="table table-hover">
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td><a cclass="btn btn-link" asp-page="/Books/BookDetails" asp-route-id="@book.Id">@book.Title</a></td>
+                @if ((await AuthorizationService.AuthorizeAsync(User, AuthorizationEnums.ChangeClaim)).Succeeded)
+                {
+                    <td><a class="btn btn-link" asp-page="/Books/Edit" asp-route-id="@book.Id">Редактировать</a></td>
+                    <td><a class="btn btn-link bg-warning" asp-page="/Books/Delete" asp-route-id="@book.Id">Удалить</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

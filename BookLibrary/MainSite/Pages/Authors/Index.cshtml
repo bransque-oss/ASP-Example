@@ -1,0 +1,28 @@
+﻿@page
+
+@using Microsoft.AspNetCore.Authorization
+@using Services;
+@inject Microsoft.AspNetCore.Authorization.IAuthorizationService AuthorizationService
+
+@model MainSite.Pages.Authors.IndexModel
+
+<h3>Авторы</h3>
+@if ((await AuthorizationService.AuthorizeAsync(User, AuthorizationEnums.ChangeClaim)).Succeeded)
+{
+    <a class="btn btn-secondary" asp-page="Create">Добавить нового</a>
+}
+<table class="table table-hover">
+    <tbody>
+        @foreach (var author in Model.Authors)
+        {
+            <tr>
+                <td><a class="btn btn-link" asp-page="AuthorDetails" asp-route-id="@author.Id">@author.Name</a></td>
+                @if ((await AuthorizationService.AuthorizeAsync(User, AuthorizationEnums.ChangeClaim)).Succeeded)
+                {
+                    <td><a class="btn btn-link" asp-page="Edit" asp-route-id="@author.Id">Редактировать</a></td>
+                    <td><a class="btn btn-link bg-warning" asp-page="Delete" asp-route-id="@author.Id">Удалить</a></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

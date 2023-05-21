@@ -1,0 +1,35 @@
+﻿@using ViewModels;
+@model BookCreateUpdateVm;
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="@Model.Title">Название</label>
+        <input class="form-control" asp-for="@Model.Title" />
+        <span asp-validation-for="@Model.Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.AuthorId">Автор</label>
+        <select class="form-control" asp-for="@Model.AuthorId" asp-items="@Model.Authors">
+            @if (Model.AuthorId is null)
+            {
+                <option>Выберите автора</option>
+            }
+        </select>
+        <span asp-validation-for="@Model.AuthorId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Isbn">ISBN</label>
+        <input class="form-control" asp-for="@Model.Isbn" />
+        <span asp-validation-for="@Model.Isbn" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="@Model.Description">Описание</label>
+        <input class="form-control" asp-for="@Model.Description" />
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
+    <div class="mt-1">
+        <button class="btn btn-secondary" asp-page-handler="Cancel" formnovalidate>Отменить</button>
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+    </div> 
+</form>

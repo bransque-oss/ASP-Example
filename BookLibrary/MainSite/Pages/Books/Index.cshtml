@@ -1,0 +1,14 @@
+﻿@page
+
+@using Microsoft.AspNetCore.Authorization
+@using Services;
+@inject Microsoft.AspNetCore.Authorization.IAuthorizationService AuthorizationService
+
+@model MainSite.Pages.Books.IndexModel
+
+<h3>Книги</h3>
+@if ((await AuthorizationService.AuthorizeAsync(User, AuthorizationEnums.ChangeClaim)).Succeeded)
+{
+    <a class="btn btn-secondary" asp-page="Create">Добавить новую</a>
+}
+@await Html.PartialAsync("_BookList", Model.Books)
